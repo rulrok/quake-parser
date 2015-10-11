@@ -103,10 +103,27 @@ public class GameIT {
 
         String[] expResult = {"\"Reuel Ribeiro\": 2", "\"[BOT] Player\": 0"};
         String[] result = game.kills();
-        
+
         assertArrayEquals(expResult, result);
-        
+
         assertEquals(game.totalKills(), 2);
     }
 
+    /**
+     * Test of players method, of class Game.
+     */
+    @Test
+    public void testPlayerNames() {
+        System.out.println("Player names");
+
+        Game game = new Game();
+
+        game.registerPlayer(1, "Zeh");
+        game.registerPlayer(2, "Carlos");
+
+        String[] expResult = {"Zeh", "Carlos"};
+        String[] result = game.players();
+
+        assertArrayEquals(expResult, result);
+    }
 }
