@@ -6,6 +6,7 @@
 package quakeparser;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import quakeparser.contracts.IGame;
 import quakeparser.contracts.IParser;
@@ -18,8 +19,16 @@ import quakeparser.exceptions.ParserNotInitialized;
 public class QuakeParser implements IParser {
 
     private boolean initialized = false;
+    private boolean parsed = false;
 
     private Log log;
+    private IGame actualGame;
+
+    private final List<? extends IGame> games;
+
+    public QuakeParser() {
+        games = new ArrayList<>();
+    }
 
     @Override
     public void readLog(Log log) throws FileNotFoundException {
@@ -34,11 +43,20 @@ public class QuakeParser implements IParser {
             throw new ParserNotInitialized("You must initialize the parser first");
         }
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!this.parsed) {
+            _parse();
+        }
+
+        return games;
     }
 
     boolean isInitialized() {
         return this.initialized;
+    }
+
+    private void _parse() {
+
+        parsed = true;
     }
 
 }
