@@ -105,6 +105,8 @@ public class GameIT {
         String[] result = game.kills();
         
         assertArrayEquals(expResult, result);
+        
+        assertEquals(game.totalKills(), 2);
     }
 
 }
