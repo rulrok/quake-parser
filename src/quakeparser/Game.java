@@ -17,6 +17,8 @@ import quakeparser.contracts.IGame;
  */
 public class Game implements IGame {
 
+    private final int WORLD_PLAYER_ID = 1023;
+
     private int totalKills;
 
     private final Map<Integer, String> players;
@@ -58,6 +60,10 @@ public class Game implements IGame {
 
     void registerPlayer(int id, String playerName) {
 
+        if (id == WORLD_PLAYER_ID) {
+            return;
+        }
+
         players.put(id, playerName);
         kills.put(id, 0);
 
@@ -66,7 +72,9 @@ public class Game implements IGame {
     void addKill(int killerID, int killedID) {
         int playerTotalKills = kills.get(killerID);
 
-        kills.put(killerID, ++playerTotalKills);
+        if (killerID != WORLD_PLAYER_ID) {
+            kills.put(killerID, ++playerTotalKills);
+        }
 
         totalKills++;
     }
