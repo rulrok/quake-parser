@@ -19,9 +19,9 @@ import quakeparser.exceptions.ParserNotInitialized;
  *
  * @author rulrok
  */
-public class ParserIT {
+public class QuakeParserIT {
 
-    public ParserIT() {
+    public QuakeParserIT() {
     }
 
     Log minimalLog;
@@ -56,27 +56,27 @@ public class ParserIT {
     }
 
     /**
-     * Test of readLog method, of class Parser.
+     * Test of readLog method, of class QuakeParser.
      */
     @Test
     public void testReadLog() throws Exception {
         System.out.println("readLog");
 
         Log log = null;
-        Parser instance = new Parser();
+        QuakeParser instance = new QuakeParser();
         instance.readLog(log);
 
         assertTrue(instance.isInitialized());
     }
 
     /**
-     * Test of games method, of class Parser.
+     * Test of games method, of class QuakeParser.
      */
     @Test(expected = ParserNotInitialized.class)
     public void testGamesNotInitialized() throws Exception {
         System.out.println("games parser not initialized yet");
 
-        Parser instance = new Parser();
+        QuakeParser instance = new QuakeParser();
 
         List<? extends IGame> games = instance.games();
     }

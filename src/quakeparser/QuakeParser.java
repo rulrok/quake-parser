@@ -15,7 +15,7 @@ import quakeparser.exceptions.ParserNotInitialized;
  *
  * @author rulrok
  */
-public class Parser implements IParser {
+public class QuakeParser implements IParser {
 
     private boolean initialized = false;
 
