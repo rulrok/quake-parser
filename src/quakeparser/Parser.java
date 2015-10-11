@@ -5,11 +5,8 @@
  */
 package quakeparser;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import quakeparser.contracts.IGame;
 import quakeparser.contracts.IParser;
 import quakeparser.exceptions.ParserNotInitialized;
@@ -22,20 +19,11 @@ public class Parser implements IParser {
 
     private boolean initiated = false;
 
-    private File oLog;
-    private List<String> lines;
+    private Log log;
 
     @Override
-    public void readLog(File log) throws FileNotFoundException {
-        this.oLog = log;
-        this.lines = new ArrayList<>();
-
-        Scanner reader = new Scanner(this.oLog);
-
-        while (reader.hasNextLine()) {
-            this.lines.add(reader.nextLine());
-        }
-
+    public void readLog(Log log) throws FileNotFoundException {
+        this.log = log;
         this.initiated = true;
     }
 
