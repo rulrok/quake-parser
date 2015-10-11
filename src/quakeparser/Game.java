@@ -17,8 +17,6 @@ import quakeparser.contracts.IGame;
  */
 public class Game implements IGame {
 
-    private final int PLAYER_WORLD_ID = 1023;
-
     private int totalKills;
 
     private final Map<Integer, String> players;
@@ -32,8 +30,6 @@ public class Game implements IGame {
         players = new HashMap<>();
         kills = new HashMap<>();
         killsByMeans = new HashMap<>(MeansOfDeath.values().length);
-        
-        _registerWorld(); //Add <world> player to the game
     }
 
     @Override
@@ -81,12 +77,6 @@ public class Game implements IGame {
         int occurrences = this.killsByMeans.containsKey(death) ? this.killsByMeans.get(death) : 0;
 
         this.killsByMeans.put(death, ++occurrences);
-    }
-
-    private void _registerWorld() {
-        players.put(PLAYER_WORLD_ID, "<world>");
-        kills.put(PLAYER_WORLD_ID, 0);
-
     }
 
 }
