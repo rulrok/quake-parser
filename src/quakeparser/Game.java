@@ -67,6 +67,8 @@ public class Game implements IGame {
         int playerTotalKills = kills.get(killerID);
 
         kills.put(killerID, ++playerTotalKills);
+
+        totalKills++;
     }
 
     void addKill(int killerID, int killedID, MeansOfDeath death) {
