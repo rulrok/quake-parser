@@ -126,4 +126,16 @@ public class GameIT {
 
         assertArrayEquals(expResult, result);
     }
+
+    /**
+     * Test for player of a new empty game
+     */
+    @Test
+    public void testPlayerNamesEmptyGame() {
+        System.out.println("Player names empty game");
+
+        Game game = new Game();
+
+        assertArrayEquals(game.players(), new String[]{});
+    }
 }
