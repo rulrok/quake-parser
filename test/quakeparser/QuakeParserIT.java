@@ -5,7 +5,10 @@
  */
 package quakeparser;
 
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import quakeparser.contracts.IGame;
+import quakeparser.contracts.IParser;
 import quakeparser.exceptions.ParserNotInitialized;
 
 /**
@@ -79,6 +83,25 @@ public class QuakeParserIT {
         QuakeParser instance = new QuakeParser();
 
         List<? extends IGame> games = instance.games();
+    }
+
+    @Test
+    public void testGamesForMinimalLog() {
+        System.out.println("games for minimal log");
+
+        IParser parser = new QuakeParser();
+
+        try {
+            parser.readLog(minimalLog);
+
+            List<? extends IGame> games = parser.games();
+
+            assertEquals(games.size(), 1);
+        } catch (FileNotFoundException ex) {
+            fail();
+        } catch (ParserNotInitialized ex) {
+            fail();
+        }
     }
 
 }
