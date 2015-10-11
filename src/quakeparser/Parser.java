@@ -17,24 +17,28 @@ import quakeparser.exceptions.ParserNotInitialized;
  */
 public class Parser implements IParser {
 
-    private boolean initiated = false;
+    private boolean initialized = false;
 
     private Log log;
 
     @Override
     public void readLog(Log log) throws FileNotFoundException {
         this.log = log;
-        this.initiated = true;
+        this.initialized = true;
     }
 
     @Override
     public List<? extends IGame> games() throws ParserNotInitialized {
 
-        if (!this.initiated) {
+        if (!this.initialized) {
             throw new ParserNotInitialized("You must initialize the parser first");
         }
 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    boolean isInitialized() {
+        return this.initialized;
     }
 
 }
