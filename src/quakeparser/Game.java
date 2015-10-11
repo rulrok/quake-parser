@@ -32,7 +32,7 @@ public class Game implements IGame {
         players = new HashMap<>();
         kills = new HashMap<>();
         killsByMeans = new HashMap<>(MeansOfDeath.values().length);
-
+        
         _registerWorld(); //Add <world> player to the game
     }
 
@@ -52,9 +52,6 @@ public class Game implements IGame {
         List<String> result = new ArrayList<>();
 
         for (Integer i : players.keySet()) {
-            if (i == PLAYER_WORLD_ID) {
-                continue;
-            }
             String player = players.get(i);
             int playerKills = kills.get(i);
             result.add("\"" + player + "\": " + playerKills);
