@@ -6,6 +6,7 @@
 package quakeparser.contracts;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import quakeparser.exceptions.ParserNotInitialized;
 
@@ -15,9 +16,7 @@ import quakeparser.exceptions.ParserNotInitialized;
  */
 public interface IParser {
 
-    public void readLog(String[] lines);
-
-    public void readLog(File log);
+    public void readLog(File log) throws FileNotFoundException;
 
     public List<? extends IGame> games() throws ParserNotInitialized;
 
