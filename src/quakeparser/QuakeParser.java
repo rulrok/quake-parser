@@ -59,12 +59,12 @@ public class QuakeParser implements IParser {
     private void _parse() {
 
         _configureNewGame();
-        
+
         for (String rawLine : log) {
             ILine line = LineParser.parseLine(rawLine);
 
             actualGame.addEvent(line);
-            
+
             if (actualGame.isFinished()) {
                 _configureNewGame();
             }
@@ -76,7 +76,9 @@ public class QuakeParser implements IParser {
     }
 
     private void _configureNewGame() {
-        games.add(actualGame);
+        if (actualGame != null) {
+            games.add(actualGame);
+        }
         actualGame = new Game();
     }
 
