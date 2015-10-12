@@ -6,10 +6,7 @@
 package quakeparser;
 
 import quakeparser.contracts.ILine;
-import quakeparser.lineparsers.ClientBeginParser;
-import quakeparser.lineparsers.ClientConnectParser;
-import quakeparser.lineparsers.ClientDisconnectParser;
-import quakeparser.lineparsers.ClientInfoChangedParser;
+import quakeparser.lineparsers.*;
 
 /**
  *
@@ -28,10 +25,20 @@ public class LineParser {
         ClientConnectParser clientConnectParser = new ClientConnectParser();
         ClientDisconnectParser clientDisconnectParser = new ClientDisconnectParser();
         ClientInfoChangedParser clientInfoChangedParser = new ClientInfoChangedParser();
+        InitGameParser initGameParser = new InitGameParser();
+        ShutdownGameParser shutdownGameParser = new ShutdownGameParser();
+        ExitParser exitParser = new ExitParser();
+        ItemParser itemParser = new ItemParser();
+        KillParser killParser = new KillParser();
 
         beginParser.setSuccessor(clientConnectParser);
         clientConnectParser.setSuccessor(clientDisconnectParser);
         clientDisconnectParser.setSuccessor(clientInfoChangedParser);
+        clientInfoChangedParser.setSuccessor(initGameParser);
+        initGameParser.setSuccessor(shutdownGameParser);
+        shutdownGameParser.setSuccessor(exitParser);
+        exitParser.setSuccessor(itemParser);
+        itemParser.setSuccessor(killParser);
 
         return beginParser.processLine(partialLine);
 
