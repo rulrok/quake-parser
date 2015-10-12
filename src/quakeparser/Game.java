@@ -98,9 +98,9 @@ public class Game implements IGame {
                 MeansOfDeath meanOfDeath = MeansOfDeath.valueOf(Integer.parseInt(line.eventIndirectObject()));
                 int killerID = Integer.parseInt(line.eventSubject());
                 int killedID = Integer.parseInt(line.eventDirectObject());
-                
+
                 addKill(killerID, killedID, meanOfDeath);
-                
+
                 break;
             case ClientConnect:
 
@@ -116,6 +116,9 @@ public class Game implements IGame {
                 String playerName = line.eventIndirectObject();
 
                 players.put(playerID, playerName);
+
+            case ShutdownGame:
+                finished = true;
         }
     }
 
