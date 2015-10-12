@@ -58,8 +58,8 @@ public class QuakeParser implements IParser {
 
     private void _parse() {
 
-        for (String s : log) {
-            ILine line = LineParser.parseLine(s);
+        for (String rawLine : log) {
+            ILine line = LineParser.parseLine(rawLine);
 
             actualGame.addEvent(line);
             
