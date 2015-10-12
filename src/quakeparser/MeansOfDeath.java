@@ -56,7 +56,7 @@ public enum MeansOfDeath {
         return id;
     }
 
-    public MeansOfDeath valueOf(int ID) {
+    public static MeansOfDeath valueOf(int ID) {
 
         MeansOfDeath[] values = MeansOfDeath.values();
         for (MeansOfDeath value : values) {
