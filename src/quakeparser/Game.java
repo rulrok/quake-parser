@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import quakeparser.contracts.IGame;
+import quakeparser.contracts.ILine;
 
 /**
  *
@@ -85,6 +86,21 @@ public class Game implements IGame {
         int occurrences = this.killsByMeans.containsKey(death) ? this.killsByMeans.get(death) : 0;
 
         this.killsByMeans.put(death, ++occurrences);
+    }
+
+    @Override
+    public void addEvent(ILine line) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void finishGame() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void finishGame(ILine line) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
