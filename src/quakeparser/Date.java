@@ -34,6 +34,16 @@ public class Date implements IDate {
     @Override
     public boolean after(IDate date) {
         if (hours == date.hours()) {
+            return minutes > date.minutes();
+        }
+
+        return hours > date.hours();
+    }
+
+    @Override
+    public boolean before(IDate date) {
+
+        if (hours == date.hours()) {
             return minutes < date.minutes();
         }
 
@@ -41,13 +51,34 @@ public class Date implements IDate {
     }
 
     @Override
-    public boolean before(IDate date) {
-
-        if (hours == date.hours()) {
-            return minutes > date.minutes();
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
 
-        return hours > date.hours();
+        if (!(obj instanceof IDate)) {
+            return false;
+        }
+
+        IDate objDate = (IDate) obj;
+
+        if (objDate.hours() != this.hours) {
+            return false;
+        }
+
+        if (objDate.minutes() != this.minutes) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.hours;
+        hash = 17 * hash + this.minutes;
+        return hash;
     }
 
 }
