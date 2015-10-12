@@ -60,6 +60,18 @@ public class LogLine implements ILine {
         return indirectObject;
     }
 
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setDirectObject(String directObject) {
+        this.directObject = directObject;
+    }
+
+    public void setIndirectObject(String indirectObject) {
+        this.indirectObject = indirectObject;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
