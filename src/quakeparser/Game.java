@@ -28,6 +28,7 @@ public class Game implements IGame {
 
     private final Map<MeansOfDeath, Integer> killsByMeans;
 
+    private boolean initiated = false;
     private boolean finished = false;
 
     public Game() {
@@ -119,6 +120,20 @@ public class Game implements IGame {
                 break;
             case ShutdownGame:
                 finished = true;
+                break;
+            case InitGame:
+
+                //We should get here only once per game
+                if (initiated && !finished) {
+                    //We are getting a second InitGame without having finished the
+                    //actual game first. It may indicated that we missed some line
+                    //of the log.
+                    finished = true;
+
+                    //NOTICE We could throw an exception here
+                }
+                initiated = true;
+
                 break;
         }
     }
