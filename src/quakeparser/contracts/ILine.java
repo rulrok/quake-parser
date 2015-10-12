@@ -33,4 +33,9 @@ public interface ILine {
 
     public void setRawLine(String rawLine);
 
+    @Override
+    public boolean equals(Object obj);
+
+    @Override
+    public int hashCode();
 }
