@@ -38,6 +38,32 @@ public class LogLineTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testEqualsPartialObject() {
+        System.out.println("equals partial object");
+
+        Object obj = new LogLine(new Date(), Event.ClientBegin);
+        LogLine instance = new LogLine(new Date(), Event.ClientBegin);
+
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testNotEqualsPartialObject() {
+        System.out.println("not equals partial object");
+
+        Object obj = new LogLine(new Date(12, 12), Event.ClientDisconect);
+        LogLine instance = new LogLine(new Date(), Event.ClientBegin);
+
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+
+        assertEquals(expResult, result);
+    }
+
     /**
      * Test of equals method, of class LogLine.
      */
