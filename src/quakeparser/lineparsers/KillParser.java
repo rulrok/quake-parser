@@ -24,7 +24,8 @@ public class KillParser extends AbstractLineParser {
 
             line.setSubject(split[2]);
             line.setDirectObject(split[3]);
-            line.setIndirectObject(split[4]);
+            //The last number has a ':' together with it
+            line.setIndirectObject(split[4].split(":", 2)[0]);
 
             return line;
 
