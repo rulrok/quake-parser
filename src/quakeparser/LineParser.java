@@ -61,6 +61,8 @@ public class LineParser {
                 new Date(Integer.parseInt(time[0]), Integer.parseInt(time[1])),
                 Event.valueOf(reason[0])
         );
+        
+        logLine.setRawLine(line);
 
         return logLine;
     }
