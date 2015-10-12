@@ -5,6 +5,8 @@
  */
 package quakeparser.lineparsers;
 
+import quakeparser.Event;
+import quakeparser.LogLine;
 import quakeparser.contracts.ILine;
 
 /**
@@ -15,7 +17,14 @@ public class KillParser extends AbstractLineParser {
 
     @Override
     public ILine processLine(ILine line) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (line.event().equals(Event.Kill)) {
+            return null;
+        } else if (successor != null) {
+            return successor.processLine(line);
+        } else {
+            //return defaul unknown event
+            return LogLine.unknownEvent();
+        }
     }
 
 }

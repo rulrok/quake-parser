@@ -5,17 +5,26 @@
  */
 package quakeparser.lineparsers;
 
+import quakeparser.Event;
+import quakeparser.LogLine;
 import quakeparser.contracts.ILine;
 
 /**
  *
  * @author rulrok
  */
-public class InitGameParser extends AbstractLineParser  {
+public class InitGameParser extends AbstractLineParser {
 
     @Override
     public ILine processLine(ILine line) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (line.event().equals(Event.InitGame)) {
+            return null;
+        } else if (successor != null) {
+            return successor.processLine(line);
+        } else {
+            //return defaul unknown event
+            return LogLine.unknownEvent();
+        }
     }
-    
+
 }
