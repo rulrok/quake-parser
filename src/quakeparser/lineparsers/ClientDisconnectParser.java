@@ -17,8 +17,14 @@ public class ClientDisconnectParser extends AbstractLineParser {
 
     @Override
     public ILine processLine(ILine line) {
-        if (line.event().equals(Event.ClientDisconect)) {
-            return null;
+        if (line.event().equals(Event.ClientDisconnect)) {
+            String rawLine = line.rawLine();
+
+            String[] split = rawLine.split("\\s+");
+
+            line.setSubject(split[2]);
+
+            return line;
         } else if (successor != null) {
             return successor.processLine(line);
         } else {
