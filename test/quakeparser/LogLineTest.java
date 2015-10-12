@@ -95,6 +95,23 @@ public class LogLineTest {
     }
 
     /**
+     * The raw line should not affect how equals works.
+     */
+    @Test
+    public void testEqualsFullObjectRawLine() {
+        System.out.println("equals full object");
+
+        Object obj = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
+        LogLine instance = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
+        instance.setRawLine("Anything alskjdfklasjdfk");
+
+        boolean expResult = true;
+        boolean result = instance.equals(obj);
+
+        assertEquals(expResult, result);
+    }
+
+    /**
      * Test of hashCode method, of class LogLine.
      */
     @Test
@@ -103,6 +120,23 @@ public class LogLineTest {
 
         Object obj = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
         LogLine instance = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
+
+        int expResult = obj.hashCode();
+        int result = instance.hashCode();
+
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * The raw line should not affect how the object is hashed.
+     */
+    @Test
+    public void testHashCodeFullObjectRawLine() {
+        System.out.println("hashCode");
+
+        Object obj = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
+        LogLine instance = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
+        instance.setRawLine("Anything aslkjfaklsjdfk");
 
         int expResult = obj.hashCode();
         int result = instance.hashCode();
