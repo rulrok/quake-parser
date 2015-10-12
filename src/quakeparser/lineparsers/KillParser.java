@@ -18,7 +18,16 @@ public class KillParser extends AbstractLineParser {
     @Override
     public ILine processLine(ILine line) {
         if (line.event().equals(Event.Kill)) {
-            return null;
+            String rawLine = line.rawLine().trim();
+
+            String[] split = rawLine.split(" +");
+
+            line.setSubject(split[2]);
+            line.setDirectObject(split[3]);
+            line.setIndirectObject(split[4]);
+
+            return line;
+
         } else if (successor != null) {
             return successor.processLine(line);
         } else {
