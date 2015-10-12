@@ -62,5 +62,16 @@ public class LineParserTest {
 
         assertEquals(expResult, result);
     }
+    
+    
+    public void testSimpleLineParser(){
+        System.out.println("simple line parser");
+        
+        ILine expResult = new LogLine(new Date(23,06), Event.Kill);
+        ILine result = LineParser.basicParse(killLine);
+        
+        assertEquals(expResult, result);
+        
+    }
 
 }
