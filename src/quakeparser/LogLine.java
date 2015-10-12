@@ -35,6 +35,10 @@ public class LogLine implements ILine {
 
     }
 
+    public static ILine unknownEvent() {
+        return new LogLine(new Date(), Event.UNKNOWN);
+    }
+
     @Override
     public IDate time() {
         return time;
