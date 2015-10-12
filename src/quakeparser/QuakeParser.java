@@ -26,7 +26,7 @@ public class QuakeParser implements IParser {
     private LogFile log;
     private IGame actualGame;
 
-    private final List<? extends IGame> games;
+    private final List<? super IGame> games;
 
     public QuakeParser() {
         games = new ArrayList<>();
@@ -39,7 +39,7 @@ public class QuakeParser implements IParser {
     }
 
     @Override
-    public List<? extends IGame> games() throws ParserNotInitialized {
+    public List<? super IGame> games() throws ParserNotInitialized {
 
         if (!this.initialized) {
             throw new ParserNotInitialized("You must initialize the parser first");
@@ -74,6 +74,7 @@ public class QuakeParser implements IParser {
     }
 
     private void _configureNewGame() {
+        games.add(actualGame);
         actualGame = new Game();
     }
 

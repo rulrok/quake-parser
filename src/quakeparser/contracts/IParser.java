@@ -18,6 +18,6 @@ public interface IParser {
 
     public void readLog(LogFile log) throws FileNotFoundException;
 
-    public List<? extends IGame> games() throws ParserNotInitialized;
+    public List<? super IGame> games() throws ParserNotInitialized;
 
 }

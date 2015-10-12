@@ -82,7 +82,7 @@ public class QuakeParserIT {
 
         QuakeParser instance = new QuakeParser();
 
-        List<? extends IGame> games = instance.games();
+        List<? super IGame> games = instance.games();
     }
 
     @Test
@@ -94,7 +94,7 @@ public class QuakeParserIT {
         try {
             parser.readLog(minimalLog);
 
-            List<? extends IGame> games = parser.games();
+            List<? super IGame> games = parser.games();
 
             assertEquals(games.size(), 1);
         } catch (FileNotFoundException ex) {
