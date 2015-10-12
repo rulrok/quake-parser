@@ -14,7 +14,7 @@ import quakeparser.contracts.ILine;
 public class ClientConnectParser extends AbstractLineParser {
 
     @Override
-    public void processLine(ILine line) {
+    public ILine processLine(ILine line) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

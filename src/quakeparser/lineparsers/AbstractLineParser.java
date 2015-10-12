@@ -19,5 +19,5 @@ public abstract class AbstractLineParser {
         this.successor = successor;
     }
 
-    abstract public void processLine(ILine line);
+    abstract public ILine processLine(ILine line);
 }
