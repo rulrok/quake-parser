@@ -58,22 +58,8 @@ public class QuakeParser implements IParser {
 
     private void _parse() {
 
-        /*
-         * Chain of responsability pattern
-         */
-        ClientBeginParser beginParser = new ClientBeginParser();
-        ClientConnectParser clientConnectParser = new ClientConnectParser();
-        ClientDisconnectParser clientDisconnectParser = new ClientDisconnectParser();
-        ClientInfoChangedParser clientInfoChangedParser = new ClientInfoChangedParser();
-
-        beginParser.setSuccessor(clientConnectParser);
-        clientConnectParser.setSuccessor(clientDisconnectParser);
-        clientDisconnectParser.setSuccessor(clientInfoChangedParser);
-
         for (String s : log) {
             ILine line = LineParser.parseLine(s);
-
-            beginParser.processLine(line);
 
             actualGame.addEvent(line);
             
