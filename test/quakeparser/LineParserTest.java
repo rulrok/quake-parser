@@ -43,14 +43,14 @@ public class LineParserTest {
 
     @Test
     public void testDullLine(){
-        System.out.println("dull line");    
-        
+        System.out.println("dull line");
+
         ILine expResult = new LogLine(new Date(), Event.UNKNOWN);
         ILine result = LineParser.basicParse(dullLine);
-        
+
         assertEquals(expResult, result);
     }
-    
+
     
     @Test
     public void testSimpleLineParse() {
