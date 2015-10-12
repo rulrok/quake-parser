@@ -16,14 +16,18 @@ public class LogLine implements ILine {
 
     private final IDate time;
     private final Event event;
-    private final String subject;
-    private final String directObject;
-    private final String indirectObject;
+    private String subject;
+    private String directObject;
+    private String indirectObject;
+
+    public LogLine(IDate time, Event event) {
+        this.time = time;
+        this.event = event;
+    }
 
     public LogLine(IDate time, Event event, String subject, String directObject, String indirectObject) {
 
-        this.time = time;
-        this.event = event;
+        this(time, event);
         this.subject = subject;
         this.directObject = directObject;
         this.indirectObject = indirectObject;
