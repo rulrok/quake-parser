@@ -56,4 +56,15 @@ public enum MeansOfDeath {
         return id;
     }
 
+    public MeansOfDeath valueOf(int ID) {
+
+        MeansOfDeath[] values = MeansOfDeath.values();
+        for (MeansOfDeath value : values) {
+            if (value.getId() == ID) {
+                return value;
+            }
+        }
+
+        return MOD_UNKNOWN;
+    }
 }
