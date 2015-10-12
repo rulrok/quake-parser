@@ -17,9 +17,9 @@ public class LogLine implements ILine {
 
     private final IDate time;
     private final Event event;
-    private String subject;
-    private String directObject;
-    private String indirectObject;
+    private String subject = "";
+    private String directObject = "";
+    private String indirectObject = "";
 
     public LogLine(IDate time, Event event) {
         this.time = time;
