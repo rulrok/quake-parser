@@ -133,7 +133,7 @@ public class LogLine implements ILine {
 
     @Override
     public String rawLine() {
-        return rawLine;
+        return rawLine.trim();
     }
 
     @Override
