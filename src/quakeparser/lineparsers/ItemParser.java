@@ -18,7 +18,14 @@ public class ItemParser extends AbstractLineParser {
     @Override
     public ILine processLine(ILine line) {
         if (line.event().equals(Event.Item)) {
-            return null;
+            String rawLine = line.rawLine();
+
+            String[] split = rawLine.split("\\s+");
+
+            line.setSubject(split[2]);
+            line.setIndirectObject(split[3]);
+
+            return line;
         } else if (successor != null) {
             return successor.processLine(line);
         } else {
