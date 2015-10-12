@@ -28,7 +28,7 @@ public class QuakeParserIT {
     public QuakeParserIT() {
     }
 
-    Log minimalLog;
+    LogFile minimalLog;
 
     private final String[] lines = {
         "0:00 ------------------------------------------------------------",
@@ -52,7 +52,7 @@ public class QuakeParserIT {
 
     @Before
     public void setUp() {
-        minimalLog = new Log(lines);
+        minimalLog = new LogFile(lines);
     }
 
     @After
@@ -66,7 +66,7 @@ public class QuakeParserIT {
     public void testReadLog() throws Exception {
         System.out.println("readLog");
 
-        Log log = null;
+        LogFile log = null;
         QuakeParser instance = new QuakeParser();
         instance.readLog(log);
 

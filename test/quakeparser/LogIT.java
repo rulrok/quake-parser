@@ -23,7 +23,7 @@ public class LogIT {
     public LogIT() {
     }
 
-    Log minimalLog;
+    LogFile minimalLog;
 
     private final String[] lines = {
         "0:00 ------------------------------------------------------------",
@@ -48,7 +48,7 @@ public class LogIT {
     @Before
     public void setUp() {
 
-        minimalLog = new Log(lines);
+        minimalLog = new LogFile(lines);
     }
 
     @After
@@ -56,7 +56,7 @@ public class LogIT {
     }
 
     /**
-     * Test of iterator method, of class Log.
+     * Test of iterator method, of class LogFile.
      */
     @Test
     public void testReadFromArray() {
@@ -76,9 +76,9 @@ public class LogIT {
 
         File logFile = new File("src/games.log");
 
-        Log log;
+        LogFile log;
         try {
-            log = new Log(logFile);
+            log = new LogFile(logFile);
 
             assertNotNull(log.iterator());
         } catch (FileNotFoundException ex) {
@@ -92,7 +92,7 @@ public class LogIT {
 
         File logFile = new File("another/path/games.log");
 
-        Log log = new Log(logFile);
+        LogFile log = new LogFile(logFile);
     }
 
 }
