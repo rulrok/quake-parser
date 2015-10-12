@@ -21,6 +21,8 @@ public class LogLine implements ILine {
     private String directObject = "";
     private String indirectObject = "";
 
+    private String rawLine = "";
+
     public LogLine(IDate time, Event event) {
         this.time = time;
         this.event = event;
@@ -127,6 +129,16 @@ public class LogLine implements ILine {
         hash = 97 * hash + Objects.hashCode(this.directObject);
         hash = 97 * hash + Objects.hashCode(this.indirectObject);
         return hash;
+    }
+
+    @Override
+    public String rawLine() {
+        return rawLine;
+    }
+
+    @Override
+    public void setRawLine(String rawLine) {
+        this.rawLine = rawLine;
     }
 
 }

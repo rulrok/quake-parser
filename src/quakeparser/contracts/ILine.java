@@ -29,4 +29,8 @@ public interface ILine {
 
     public void setIndirectObject(String indirectObject);
 
+    public String rawLine();
+
+    public void setRawLine(String rawLine);
+
 }
