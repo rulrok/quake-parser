@@ -16,4 +16,10 @@ public interface IGame {
     public String[] players();
 
     public String[] kills();
+
+    public void addEvent(ILine line);
+
+    public void finishGame();
+
+    public void finishGame(ILine line);
 }
