@@ -5,7 +5,7 @@
  */
 package quakeparser;
 
-import java.util.Date;
+import quakeparser.contracts.IDate;
 import quakeparser.contracts.ILine;
 
 /**
@@ -14,31 +14,24 @@ import quakeparser.contracts.ILine;
  */
 public class LogLine implements ILine {
 
-    private final Date time;
+    private final IDate time;
     private final Event event;
     private final String subject;
     private final String directObject;
     private final String indirectObject;
 
-    private final String rawLine;
+    public LogLine(IDate time, Event event, String subject, String directObject, String indirectObject) {
 
-    boolean parsed = false;
-
-    public LogLine(String rawLine) {
-        this.rawLine = rawLine;
-
-        ILine parsedLine = LineParser.parseLine(rawLine);
-
-        this.time = parsedLine.time();
-        this.event = parsedLine.event();
-        this.subject = parsedLine.eventSubject();
-        this.directObject = parsedLine.eventDirectObject();
-        this.indirectObject = parsedLine.eventIndirectObject();
+        this.time = time;
+        this.event = event;
+        this.subject = subject;
+        this.directObject = directObject;
+        this.indirectObject = indirectObject;
 
     }
 
     @Override
-    public Date time() {
+    public IDate time() {
         return time;
     }
 

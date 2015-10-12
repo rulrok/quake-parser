@@ -5,7 +5,6 @@
  */
 package quakeparser.contracts;
 
-import java.util.Date;
 import quakeparser.Event;
 
 /**
@@ -15,7 +14,7 @@ import quakeparser.Event;
 public interface ILine {
     
     
-    public Date time();
+    public IDate time();
     
     public Event event();
     
