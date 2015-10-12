@@ -18,7 +18,7 @@ import quakeparser.contracts.ILine;
  */
 public class Game implements IGame {
 
-    private final int WORLD_PLAYER_ID = 1023;
+    private final int WORLD_PLAYER_ID = 1022;
 
     private int totalKills;
 
