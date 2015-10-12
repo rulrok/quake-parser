@@ -14,7 +14,7 @@ import quakeparser.lineparsers.*;
  */
 public class LineParser {
 
-    static ILine parseLine(String line) {
+    public static ILine parseLine(String line) {
 
         ILine partialLine = LineParser.basicParse(line);
 
@@ -44,7 +44,7 @@ public class LineParser {
 
     }
 
-    private static ILine basicParse(String line) {
+    static ILine basicParse(String line) {
         return null;
     }
 
