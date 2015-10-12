@@ -18,7 +18,13 @@ public class ExitParser extends AbstractLineParser {
     @Override
     public ILine processLine(ILine line) {
         if (line.event().equals(Event.Exit)) {
-            return null;
+            String rawLine = line.rawLine();
+
+            String[] split = rawLine.split("\\s+", 3);
+
+            line.setSubject(split[2]);
+
+            return line;
         } else if (successor != null) {
             return successor.processLine(line);
         } else {
