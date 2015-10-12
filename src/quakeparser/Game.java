@@ -73,9 +73,9 @@ public class Game implements IGame {
     }
 
     void addKill(int killerID, int killedID) {
-        int playerTotalKills = kills.get(killerID);
 
         if (killerID != WORLD_PLAYER_ID) {
+            int playerTotalKills = kills.get(killerID);
             kills.put(killerID, ++playerTotalKills);
         }
 
