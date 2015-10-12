@@ -48,7 +48,7 @@ public class LogLineTest {
         Object obj = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
         LogLine instance = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
 
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.equals(obj);
 
         assertEquals(expResult, result);
