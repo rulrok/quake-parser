@@ -9,7 +9,7 @@ package quakeparser.contracts;
  *
  * @author rulrok
  */
-public interface IDate extends Comparable<IDate> {
+public interface IDate {
 
     public int hours();
 
