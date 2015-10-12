@@ -75,13 +75,11 @@ public class QuakeParser implements IParser {
 
             beginParser.processLine(line);
 
-            if (line.event().equals(Event.ShutdownGame)) {
-                actualGame.finishGame(line);
-                _configureNewGame();
-                continue;
-            }
-
             actualGame.addEvent(line);
+            
+            if (actualGame.isFinished()) {
+                _configureNewGame();
+            }
 
         }
 

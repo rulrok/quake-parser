@@ -28,6 +28,8 @@ public class Game implements IGame {
 
     private final Map<MeansOfDeath, Integer> killsByMeans;
 
+    private boolean finished = false;
+
     public Game() {
         totalKills = 0;
         players = new HashMap<>();
@@ -94,13 +96,8 @@ public class Game implements IGame {
     }
 
     @Override
-    public void finishGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void finishGame(ILine line) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isFinished() {
+        return finished;
     }
 
 }

@@ -19,7 +19,5 @@ public interface IGame {
 
     public void addEvent(ILine line);
 
-    public void finishGame();
-
-    public void finishGame(ILine line);
+    public boolean isFinished();
 }
