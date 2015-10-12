@@ -5,10 +5,12 @@
  */
 package quakeparser;
 
+import quakeparser.lineparsers.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import quakeparser.contracts.IGame;
+import quakeparser.contracts.ILine;
 import quakeparser.contracts.IParser;
 import quakeparser.exceptions.ParserNotInitialized;
 
@@ -56,7 +58,39 @@ public class QuakeParser implements IParser {
 
     private void _parse() {
 
+        /*
+         * Chain of responsability pattern
+         */
+        ClientBeginParser beginParser = new ClientBeginParser();
+        ClientConnectParser clientConnectParser = new ClientConnectParser();
+        ClientDisconnectParser clientDisconnectParser = new ClientDisconnectParser();
+        ClientInfoChangedParser clientInfoChangedParser = new ClientInfoChangedParser();
+
+        beginParser.setSuccessor(clientConnectParser);
+        clientConnectParser.setSuccessor(clientDisconnectParser);
+        clientDisconnectParser.setSuccessor(clientInfoChangedParser);
+
+        for (String s : log) {
+            ILine line = LineParser.parseLine(s);
+
+            beginParser.processLine(line);
+
+            if (line.event().equals(Event.ShutdownGame)) {
+                actualGame.finishGame(line);
+                _configureNewGame();
+                continue;
+            }
+
+            actualGame.addEvent(line);
+
+        }
+
         parsed = true;
+
+    }
+
+    private void _configureNewGame() {
+        actualGame = new Game();
     }
 
 }
