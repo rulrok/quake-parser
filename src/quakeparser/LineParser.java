@@ -45,7 +45,24 @@ public class LineParser {
     }
 
     static ILine basicParse(String line) {
-        return null;
+
+        String[] split = line.trim().split(" +");
+
+        String[] time = split[0].split(":");
+
+        String[] reason = new String[2];
+        if (!split[1].matches("\\w+:")) {
+            reason[0] = "UNKNOWN";
+        } else {
+            reason = split[1].split(":", 2);
+        }
+
+        ILine logLine = new LogLine(
+                new Date(Integer.parseInt(time[0]), Integer.parseInt(time[1])),
+                Event.valueOf(reason[0])
+        );
+
+        return logLine;
     }
 
 }
