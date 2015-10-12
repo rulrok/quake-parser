@@ -21,7 +21,7 @@ public enum Event {
     Exit,
     
     ClientConnect,
-    ClientDisconect,
+    ClientDisconnect,
     ClientUserinfoChanged,
     ClientBegin,
     

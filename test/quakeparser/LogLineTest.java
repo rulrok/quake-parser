@@ -55,7 +55,7 @@ public class LogLineTest {
     public void testNotEqualsPartialObject() {
         System.out.println("not equals partial object");
 
-        Object obj = new LogLine(new Date(12, 12), Event.ClientDisconect);
+        Object obj = new LogLine(new Date(12, 12), Event.ClientDisconnect);
         LogLine instance = new LogLine(new Date(), Event.ClientBegin);
 
         boolean expResult = false;
