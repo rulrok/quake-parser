@@ -12,16 +12,21 @@ import quakeparser.Event;
  * @author rulrok
  */
 public interface ILine {
-    
-    
+
     public IDate time();
-    
+
     public Event event();
-    
+
     public String eventSubject();
-    
+
+    public void setSubject(String subject);
+
     public String eventDirectObject();
-    
+
+    public void setDirectObject(String object);
+
     public String eventIndirectObject();
+
+    public void setIndirectObject(String indirectObject);
 
 }

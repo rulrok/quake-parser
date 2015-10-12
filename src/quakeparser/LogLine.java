@@ -60,14 +60,17 @@ public class LogLine implements ILine {
         return indirectObject;
     }
 
+    @Override
     public void setSubject(String subject) {
         this.subject = subject;
     }
 
+    @Override
     public void setDirectObject(String directObject) {
         this.directObject = directObject;
     }
 
+    @Override
     public void setIndirectObject(String indirectObject) {
         this.indirectObject = indirectObject;
     }
