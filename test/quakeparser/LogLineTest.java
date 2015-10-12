@@ -54,6 +54,20 @@ public class LogLineTest {
         assertEquals(expResult, result);
     }
 
+    @Test
+    public void testNotEqualsFullObject() {
+        System.out.println("not equals full object");
+
+        Object obj = new LogLine(new Date(12, 13), Event.Item, "1", "2", "22");
+        LogLine instance = new LogLine(new Date(12, 12), Event.Item, "1", "2", "22");
+
+        boolean expResult = false;
+        boolean result = instance.equals(obj);
+
+        assertEquals(expResult, result);
+
+    }
+
     /**
      * Test of hashCode method, of class LogLine.
      */
