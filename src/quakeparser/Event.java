@@ -11,6 +11,8 @@ package quakeparser;
  */
 public enum Event {
     
+    UNKNOWN,
+    
     Item,
     Kill,
     
