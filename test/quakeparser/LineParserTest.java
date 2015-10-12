@@ -21,6 +21,9 @@ public class LineParserTest {
 
     public LineParserTest() {
     }
+    
+    String killLine = "23:06 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT";
+    
 
     @BeforeClass
     public static void setUpClass() {
@@ -45,7 +48,7 @@ public class LineParserTest {
     public void testParseKillLine() {
         System.out.println("parse kill line");
 
-        String line = "23:06 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT";
+        
 
         ILine expResult = new LogLine(
                 new Date(23, 06),
@@ -55,7 +58,7 @@ public class LineParserTest {
                 "22"
         );
 
-        ILine result = LineParser.parseLine(line);
+        ILine result = LineParser.parseLine(killLine);
 
         assertEquals(expResult, result);
     }
