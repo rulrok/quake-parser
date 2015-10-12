@@ -16,6 +16,10 @@ public class LineParser {
 
     public static ILine parseLine(String line) {
 
+        if (!_validateLine(line)) {
+            return LogLine.unknownEvent();
+        }
+
         ILine partialLine = LineParser.basicParse(line);
 
         /*
@@ -61,10 +65,14 @@ public class LineParser {
                 new Date(Integer.parseInt(time[0]), Integer.parseInt(time[1])),
                 Event.valueOf(reason[0])
         );
-        
+
         logLine.setRawLine(line);
 
         return logLine;
+    }
+
+    private static boolean _validateLine(String line) {
+        return line.matches("^\\s*?\\d+:\\d+ \\w+:.*$");
     }
 
 }
