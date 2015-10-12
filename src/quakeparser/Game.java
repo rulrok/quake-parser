@@ -92,7 +92,31 @@ public class Game implements IGame {
 
     @Override
     public void addEvent(ILine line) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (line.event()) {
+            case Kill:
+
+                MeansOfDeath meanOfDeath = MeansOfDeath.valueOf(Integer.parseInt(line.eventIndirectObject()));
+                int killerID = Integer.parseInt(line.eventSubject());
+                int killedID = Integer.parseInt(line.eventDirectObject());
+                
+                addKill(killerID, killedID, meanOfDeath);
+                
+                break;
+            case ClientConnect:
+
+                int playerID = Integer.parseInt(line.eventSubject());
+
+                players.put(playerID, null);
+                kills.put(playerID, 0);
+
+                break;
+            case ClientUserinfoChanged:
+
+                playerID = Integer.parseInt(line.eventSubject());
+                String playerName = line.eventIndirectObject();
+
+                players.put(playerID, playerName);
+        }
     }
 
     @Override
