@@ -22,6 +22,7 @@ public class LineParserTest {
     public LineParserTest() {
     }
 
+    String dullLine = "0:00 ------------------------------------------------------------";
     String killLine = "23:06 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT";
 
     @BeforeClass
@@ -40,6 +41,17 @@ public class LineParserTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testDullLine(){
+        System.out.println("dull line");    
+        
+        ILine expResult = new LogLine(new Date(), Event.UNKNOWN);
+        ILine result = LineParser.basicParse(dullLine);
+        
+        assertEquals(expResult, result);
+    }
+    
+    
     @Test
     public void testSimpleLineParse() {
         System.out.println("simple line parser");
