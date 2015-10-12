@@ -18,7 +18,7 @@ public class ShutdownGameParser extends AbstractLineParser {
     @Override
     public ILine processLine(ILine line) {
         if (line.event().equals(Event.ShutdownGame)) {
-            return null;
+            return line;
         } else if (successor != null) {
             return successor.processLine(line);
         } else {
