@@ -116,9 +116,10 @@ public class Game implements IGame {
                 String playerName = line.eventIndirectObject();
 
                 players.put(playerID, playerName);
-
+                break;
             case ShutdownGame:
                 finished = true;
+                break;
         }
     }
 
