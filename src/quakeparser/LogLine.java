@@ -5,6 +5,7 @@
  */
 package quakeparser;
 
+import java.util.Objects;
 import quakeparser.contracts.IDate;
 import quakeparser.contracts.ILine;
 
@@ -57,6 +58,56 @@ public class LogLine implements ILine {
     @Override
     public String eventIndirectObject() {
         return indirectObject;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof ILine)) {
+            return false;
+        }
+
+        ILine objLine = (ILine) obj;
+
+        if (!objLine.time().equals(this.time)) {
+            return false;
+        }
+
+        if (!objLine.event().equals(this.event)) {
+            return false;
+        }
+
+        if (!objLine.eventSubject().equals(this.subject)) {
+            return false;
+        }
+
+        if (!objLine.eventDirectObject().equals(this.directObject)) {
+            return false;
+        }
+
+        if (!objLine.eventIndirectObject().equals(this.indirectObject)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.time);
+        hash = 97 * hash + Objects.hashCode(this.event);
+        hash = 97 * hash + Objects.hashCode(this.subject);
+        hash = 97 * hash + Objects.hashCode(this.directObject);
+        hash = 97 * hash + Objects.hashCode(this.indirectObject);
+        return hash;
     }
 
 }
