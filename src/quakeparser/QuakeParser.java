@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import quakeparser.contracts.IGame;
 import quakeparser.contracts.ILine;
 import quakeparser.contracts.IParser;
@@ -76,8 +77,12 @@ public class QuakeParser implements IParser {
         int gameCount = 1;
         for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
             IGame game = (IGame) it.next();
+            
+            //Total kills
             result.append("game_").append(gameCount).append(": {\n");
             result.append("\ttotal_kills: ").append(game.totalKills()).append(";\n");
+            
+            //Players
             result.append("\tplayers: [");
             for (String playerName : game.players()) {
                 result.append('"').append(playerName).append('"').append(',');
@@ -85,10 +90,24 @@ public class QuakeParser implements IParser {
             result.deleteCharAt(result.lastIndexOf(","));
             result.append("]\n");
             result.append("\tkills: {\n");
+            
+            //Kills
             for (String killLine : game.kills()) {
                 result.append("\t\t").append(killLine).append(",\n");
             }
             result.deleteCharAt(result.lastIndexOf(","));
+            result.append("\t}\n");
+
+            //Kills by means
+            result.append("\tkills_by_means: {\n");
+            Map<MeansOfDeath, Integer> killsByMeans = game.killsByMeans();
+            for (Map.Entry<MeansOfDeath, Integer> entrySet : killsByMeans.entrySet()) {
+                MeansOfDeath key = entrySet.getKey();
+                Integer value = entrySet.getValue();
+
+                result.append("\t\t\"").append(key).append("\": ").append(value).append(",\n");
+            }
+            
             result.append("\t}\n");
 
             result.append("}\n\n");
