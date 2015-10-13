@@ -5,6 +5,9 @@
  */
 package quakeparser.contracts;
 
+import java.util.Map;
+import quakeparser.MeansOfDeath;
+
 /**
  *
  * @author rulrok
@@ -16,6 +19,8 @@ public interface IGame {
     public String[] players();
 
     public String[] kills();
+
+    public Map<MeansOfDeath, Integer> killsByMeans();
 
     public void addEvent(ILine line);
 

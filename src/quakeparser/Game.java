@@ -143,4 +143,9 @@ public class Game implements IGame {
         return finished;
     }
 
+    @Override
+    public Map<MeansOfDeath, Integer> killsByMeans() {
+        return killsByMeans;
+    }
+
 }
