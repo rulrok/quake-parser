@@ -1,9 +1,17 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import quakeparser.LogFile;
+import quakeparser.QuakeParser;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author rulrok
@@ -33,6 +41,11 @@ public class MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jB_openFile.setText("Open Quake file");
+        jB_openFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_openFileActionPerformed(evt);
+            }
+        });
 
         jTA_parserResult.setColumns(20);
         jTA_parserResult.setRows(5);
@@ -45,7 +58,7 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                     .addComponent(jB_openFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -61,6 +74,30 @@ public class MainForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jB_openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_openFileActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+
+            try {
+                LogFile log = new LogFile(file);
+
+                QuakeParser parser = new QuakeParser(log);
+                String results = parser.results();
+                
+                jTA_parserResult.setText(results);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jB_openFileActionPerformed
 
     /**
      * @param args the command line arguments
