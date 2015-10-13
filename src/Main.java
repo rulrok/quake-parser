@@ -27,11 +27,7 @@ public class Main {
 
         List<? super IGame> games = parser.games();
 
-        for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
-            IGame game = (IGame) it.next();
-
-            System.out.println(game.totalKills());
-        }
+        System.out.println(parser.results());
 
     }
 

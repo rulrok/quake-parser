@@ -7,6 +7,8 @@ package quakeparser;
 
 import quakeparser.lineparsers.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import quakeparser.contracts.IGame;
 import quakeparser.contracts.ILine;
@@ -68,7 +70,24 @@ public class QuakeParser implements IParser {
 
     @Override
     public String results() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder result = new StringBuilder();
+
+        int gameCount = 1;
+        for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
+            IGame game = (IGame) it.next();
+            result.append("game_").append(gameCount).append(": {\n");
+            result.append("\ttotal_kills: ").append(game.totalKills()).append('\n');
+            result.append("\tplayers: ").append(Arrays.toString(game.players())).append('\n');
+
+            result.append("}\n\n");
+
+            gameCount++;
+
+        }
+
+        return result.toString();
+
     }
 
 }
