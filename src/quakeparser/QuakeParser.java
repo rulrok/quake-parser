@@ -23,17 +23,13 @@ public class QuakeParser implements IParser {
     private boolean initialized = false;
     private boolean parsed = false;
 
-    private LogFile log;
+    private final LogFile log;
     private IGame actualGame;
 
     private final List<? super IGame> games;
 
-    public QuakeParser() {
-        games = new ArrayList<>();
-    }
-
-    @Override
-    public void readLog(LogFile log) throws FileNotFoundException {
+    public QuakeParser(LogFile log) {
+        this.games = new ArrayList<>();
         this.log = log;
         this.initialized = true;
     }
