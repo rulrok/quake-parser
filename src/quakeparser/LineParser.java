@@ -34,6 +34,7 @@ public class LineParser {
         ExitParser exitParser = new ExitParser();
         ItemParser itemParser = new ItemParser();
         KillParser killParser = new KillParser();
+        ScoreParser scoreParser = new ScoreParser();
 
         beginParser.setSuccessor(clientConnectParser);
         clientConnectParser.setSuccessor(clientDisconnectParser);
@@ -43,6 +44,7 @@ public class LineParser {
         shutdownGameParser.setSuccessor(exitParser);
         exitParser.setSuccessor(itemParser);
         itemParser.setSuccessor(killParser);
+        killParser.setSuccessor(scoreParser);
 
         return beginParser.processLine(partialLine);
 

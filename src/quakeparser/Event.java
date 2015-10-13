@@ -25,4 +25,6 @@ public enum Event {
     ClientUserinfoChanged,
     ClientBegin,
     
+    score
+    
 }
