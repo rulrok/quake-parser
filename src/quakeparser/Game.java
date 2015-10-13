@@ -45,7 +45,7 @@ public class Game implements IGame {
 
     @Override
     public String[] players() {
-        return (String[]) players.values().toArray();
+        return players.values().toArray(new String[]{});
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Game implements IGame {
             result.add("\"" + player + "\": " + playerKills);
         }
 
-        return (String[]) result.toArray();
+        return result.toArray(new String[]{});
     }
 
     void registerPlayer(int id, String playerName) {
