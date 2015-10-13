@@ -5,10 +5,7 @@
  */
 package quakeparser;
 
-import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +14,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import quakeparser.contracts.IGame;
 import quakeparser.contracts.IParser;
-import quakeparser.exceptions.ParserNotInitialized;
 
 /**
  *
@@ -59,49 +55,14 @@ public class QuakeParserIT {
     public void tearDown() {
     }
 
-    /**
-     * Test of readLog method, of class QuakeParser.
-     */
-    @Test
-    public void testReadLog() throws Exception {
-        System.out.println("readLog");
-
-        LogFile log = null;
-        QuakeParser instance = new QuakeParser();
-        instance.readLog(log);
-
-        assertTrue(instance.isInitialized());
-    }
-
-    /**
-     * Test of games method, of class QuakeParser.
-     */
-    @Test(expected = ParserNotInitialized.class)
-    public void testGamesNotInitialized() throws Exception {
-        System.out.println("games parser not initialized yet");
-
-        QuakeParser instance = new QuakeParser();
-
-        List<? super IGame> games = instance.games();
-    }
-
     @Test
     public void testGamesForMinimalLog() {
         System.out.println("games for minimal log");
 
-        IParser parser = new QuakeParser();
+        IParser parser = new QuakeParser(minimalLog);
+        List<? super IGame> games = parser.games();
 
-        try {
-            parser.readLog(minimalLog);
-
-            List<? super IGame> games = parser.games();
-
-            assertEquals(games.size(), 1);
-        } catch (FileNotFoundException ex) {
-            fail();
-        } catch (ParserNotInitialized ex) {
-            fail();
-        }
+        assertEquals(games.size(), 1);
     }
 
 }
