@@ -17,7 +17,9 @@
 Only the minimal setup is necessary to run the application.
 
 For development, simply download the [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).
-No third-party libraries are necessary.
+No third-party libraries are necessary to run the application.
+
+For testing, [JUnit 4](https://github.com/junit-team/junit) is required.
 
 Just open the project with the last version of [Netbeans](https://netbeans.org/downloads/) and run it.
 
