@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import quakeparser.LogFile;
 import quakeparser.QuakeParser;
 import quakeparser.contracts.IGame;
-import quakeparser.exceptions.ParserNotInitialized;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,22 +21,16 @@ import quakeparser.exceptions.ParserNotInitialized;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        QuakeParser parser = new QuakeParser();
 
         LogFile log = new LogFile(new File("src/games.log"));
+        QuakeParser parser = new QuakeParser(log);
 
-        parser.readLog(log);
+        List<? super IGame> games = parser.games();
 
-        try {
-            List<? super IGame> games = parser.games();
+        for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
+            IGame game = (IGame) it.next();
 
-            for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
-                IGame game = (IGame) it.next();
-
-                System.out.println(game.totalKills());
-            }
-        } catch (ParserNotInitialized ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(game.totalKills());
         }
 
     }
