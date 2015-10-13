@@ -15,4 +15,6 @@ public interface IParser {
 
     public List<? super IGame> games();
 
+    public String results();
+
 }

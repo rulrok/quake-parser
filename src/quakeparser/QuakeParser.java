@@ -66,4 +66,9 @@ public class QuakeParser implements IParser {
         actualGame = new Game();
     }
 
+    @Override
+    public String results() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
