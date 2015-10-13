@@ -72,16 +72,20 @@ public class QuakeParser implements IParser {
     @Override
     public String results() {
 
+        if (!this.parsed) {
+            _parse();
+        }
+
         StringBuilder result = new StringBuilder();
 
         int gameCount = 1;
         for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
             IGame game = (IGame) it.next();
-            
+
             //Total kills
             result.append("game_").append(gameCount).append(": {\n");
             result.append("\ttotal_kills: ").append(game.totalKills()).append(";\n");
-            
+
             //Players
             result.append("\tplayers: [");
             for (String playerName : game.players()) {
@@ -90,7 +94,7 @@ public class QuakeParser implements IParser {
             result.deleteCharAt(result.lastIndexOf(","));
             result.append("]\n");
             result.append("\tkills: {\n");
-            
+
             //Kills
             for (String killLine : game.kills()) {
                 result.append("\t\t").append(killLine).append(",\n");
@@ -107,7 +111,7 @@ public class QuakeParser implements IParser {
 
                 result.append("\t\t\"").append(key).append("\": ").append(value).append(",\n");
             }
-            
+
             result.append("\t}\n");
 
             result.append("}\n\n");
