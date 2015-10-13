@@ -6,7 +6,6 @@
 package quakeparser.contracts;
 
 import java.util.List;
-import quakeparser.exceptions.ParserNotInitialized;
 
 /**
  *
@@ -14,6 +13,6 @@ import quakeparser.exceptions.ParserNotInitialized;
  */
 public interface IParser {
 
-    public List<? super IGame> games() throws ParserNotInitialized;
+    public List<? super IGame> games();
 
 }

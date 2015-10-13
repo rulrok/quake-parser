@@ -6,13 +6,11 @@
 package quakeparser;
 
 import quakeparser.lineparsers.*;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import quakeparser.contracts.IGame;
 import quakeparser.contracts.ILine;
 import quakeparser.contracts.IParser;
-import quakeparser.exceptions.ParserNotInitialized;
 
 /**
  *
@@ -20,7 +18,6 @@ import quakeparser.exceptions.ParserNotInitialized;
  */
 public class QuakeParser implements IParser {
 
-    private boolean initialized = false;
     private boolean parsed = false;
 
     private final LogFile log;
@@ -31,25 +28,16 @@ public class QuakeParser implements IParser {
     public QuakeParser(LogFile log) {
         this.games = new ArrayList<>();
         this.log = log;
-        this.initialized = true;
     }
 
     @Override
-    public List<? super IGame> games() throws ParserNotInitialized {
-
-        if (!this.initialized) {
-            throw new ParserNotInitialized("You must initialize the parser first");
-        }
+    public List<? super IGame> games() {
 
         if (!this.parsed) {
             _parse();
         }
 
         return games;
-    }
-
-    boolean isInitialized() {
-        return this.initialized;
     }
 
     private void _parse() {
