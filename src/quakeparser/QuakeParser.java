@@ -77,8 +77,19 @@ public class QuakeParser implements IParser {
         for (Iterator<? super IGame> it = games.iterator(); it.hasNext();) {
             IGame game = (IGame) it.next();
             result.append("game_").append(gameCount).append(": {\n");
-            result.append("\ttotal_kills: ").append(game.totalKills()).append('\n');
-            result.append("\tplayers: ").append(Arrays.toString(game.players())).append('\n');
+            result.append("\ttotal_kills: ").append(game.totalKills()).append(";\n");
+            result.append("\tplayers: [");
+            for (String playerName : game.players()) {
+                result.append('"').append(playerName).append('"').append(',');
+            }
+            result.deleteCharAt(result.lastIndexOf(","));
+            result.append("]\n");
+            result.append("\tkills: {\n");
+            for (String killLine : game.kills()) {
+                result.append("\t\t").append(killLine).append(",\n");
+            }
+            result.deleteCharAt(result.lastIndexOf(","));
+            result.append("\t}\n");
 
             result.append("}\n\n");
 
